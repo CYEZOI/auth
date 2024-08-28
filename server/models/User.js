@@ -1,10 +1,10 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require("sequelize");
 const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: './db/database.sqlite'
+    dialect: "sqlite",
+    storage: "./db/database.sqlite"
 });
 
-const User = sequelize.define('User', {
+const User = sequelize.define("User", {
     username: {
         type: DataTypes.STRING,
         unique: true,

@@ -1,6 +1,6 @@
-const User = require('../models/User'); // 引入用户模型
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const User = require("../models/User"); // 引入用户模型
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 // 注册用户
 exports.register = async (req, res) => {
@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
         // 检查用户是否已存在
         const existingUser = await User.findOne({ where: { username } });
         if (existingUser) {
-            return res.status(400).json({ message: 'User already exists' });
+            return res.status(400).json({ message: "User already exists" });
         }
 
         // 密码加密
@@ -19,9 +19,9 @@ exports.register = async (req, res) => {
         // 创建新用户
         const user = await User.create({ username, password: hashedPassword });
 
-        res.status(201).json({ message: 'User registered', user });
+        res.status(201).json({ message: "User registered", user });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: "Server error", error });
     }
 };
 
@@ -33,21 +33,21 @@ exports.login = async (req, res) => {
         // 查找用户
         const user = await User.findOne({ where: { username } });
         if (!user) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: "Invalid credentials" });
         }
 
         // 验证密码
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
-            return res.status(400).json({ message: 'Invalid credentials' });
+            return res.status(400).json({ message: "Invalid credentials" });
         }
 
         // 生成 JWT
-        const token = jwt.sign({ id: user.id }, 'your_jwt_secret', { expiresIn: '1h' });
+        const token = jwt.sign({ id: user.id }, "your_jwt_secret", { expiresIn: "1h" });
 
-        res.status(200).json({ message: 'Login successful', token });
+        res.status(200).json({ message: "Login successful", token });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: "Server error", error });
     }
 };
 
@@ -58,12 +58,12 @@ exports.getUserById = async (req, res) => {
         const user = await User.findByPk(id);
 
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
         res.status(200).json(user);
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: "Server error", error });
     }
 };
 
@@ -76,7 +76,7 @@ exports.updateUser = async (req, res) => {
         // 查找用户
         const user = await User.findByPk(id);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
         // 更新用户信息
@@ -85,9 +85,9 @@ exports.updateUser = async (req, res) => {
 
         await user.save();
 
-        res.status(200).json({ message: 'User updated', user });
+        res.status(200).json({ message: "User updated", user });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: "Server error", error });
     }
 };
 
@@ -99,14 +99,14 @@ exports.deleteUser = async (req, res) => {
         // 查找用户
         const user = await User.findByPk(id);
         if (!user) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ message: "User not found" });
         }
 
         // 删除用户
         await user.destroy();
 
-        res.status(200).json({ message: 'User deleted' });
+        res.status(200).json({ message: "User deleted" });
     } catch (error) {
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: "Server error", error });
     }
 };

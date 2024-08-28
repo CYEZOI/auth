@@ -1,5 +1,5 @@
 {
-  "name": "cyezoi-auth-server",
+  "name": "cyezoi-server",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
