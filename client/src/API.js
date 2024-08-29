@@ -1,6 +1,6 @@
 class API {
     static Post = async (Name, { APIParams: Params, }) => {
-        return fetch(`/${Name}`, {
+        return fetch(`http://localhost:5002/api/${Name}`, {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -20,3 +20,5 @@ class API {
             .catch((error) => error);
     }
 }
+
+export default API;

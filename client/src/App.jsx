@@ -2,16 +2,16 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from 'react-bootstrap/NavDropdown';
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Login from "./Login";
 import Register from "./Register";
-import { withTranslation } from 'react-i18next';
+import { withTranslation } from "react-i18next";
 import i18n from "./i18n";
-import * as Icon from 'react-bootstrap-icons';
+import * as Icon from "react-bootstrap-icons";
 
 class App extends React.Component {
   state = {
-    currentPage: "Login",
+    currentPage: "login",
   };
 
   render() {
@@ -27,10 +27,10 @@ class App extends React.Component {
             <Navbar.Toggle />
             <Navbar.Collapse>
               <Nav className="me-auto">
-                <Nav.Link onClick={() => this.setState({ currentPage: "Login" })}>{t("Login")}</Nav.Link>
-                <Nav.Link onClick={() => this.setState({ currentPage: "Register" })}>{t("Register")}</Nav.Link>
+                <Nav.Link onClick={() => this.setState({ currentPage: "login" })}>{t("login")}</Nav.Link>
+                <Nav.Link onClick={() => this.setState({ currentPage: "register" })}>{t("register")}</Nav.Link>
               </Nav>
-              <NavDropdown title={<span><Icon.Translate className="me-2" />{t("Language")}</span>}>
+              <NavDropdown title={<span><Icon.Translate className="me-2" />{t("language")}</span>}>
                 <NavDropdown.Item onClick={() => { i18n.changeLanguage("en"); this.render(); }}>English</NavDropdown.Item>
                 <NavDropdown.Item onClick={() => { i18n.changeLanguage("zh"); this.render(); }}>中文</NavDropdown.Item>
               </NavDropdown>
@@ -41,15 +41,16 @@ class App extends React.Component {
           <h5>{this.state.currentPage}</h5>
           {(() => {
             switch (this.state.currentPage) {
-              case "Login":
+              case "login":
                 return <Login />;
-              case "Register":
+              case "register":
                 return <Register />;
               default:
                 return null;
             }
           })()}
         </div>
+        <div><center>{t("footer")}</center></div>
       </Container >
     );
   }

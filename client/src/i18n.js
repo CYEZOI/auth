@@ -4,20 +4,22 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Login": "Login",
-      "Register": "Register",
-      "Language": "Language",
-      "Username": "Username",
-      "Password": "Password",
+      "login": "Login",
+      "register": "Register",
+      "language": "Language",
+      "username": "Username",
+      "password": "Password",
+      "footer": "Powered by CYEZOI, open source at GitHub",
     },
   },
   zh: {
     translation: {
-      "Login": "登录",
-      "Register": "注册",
-      "Language": "语言",
-      "Username": "用户名",
-      "Password": "密码",
+      "login": "登录",
+      "register": "注册",
+      "language": "语言",
+      "username": "用户名",
+      "password": "密码",
+      "footer": "由CYEZOI提供支持，在GitHub上开源",
     },
   },
 };

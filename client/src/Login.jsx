@@ -15,27 +15,27 @@ class Login extends React.Component {
     return (
       <Formik
         validationSchema={yup.object().shape({
-          Username: yup.string().required().min(4).max(16),
-          Password: yup.string().required().min(8).max(64),
+          username: yup.string().required().min(4).max(16),
+          password: yup.string().required().min(8).max(64),
         })}
         onSubmit={(APIParams) => {
-          API.Post("Login", { APIParams }).then((response) => {
+          API.Post("users/login", { APIParams }).then((response) => {
             // ...
           });
-        }} initialValues={{ Username: "", Password: "", }}
+        }} initialValues={{ username: "", password: "", }}
       >
         {({ handleSubmit, handleChange, handleBlur, values, touched, errors }) => (
           <Form noValidate onSubmit={handleSubmit}>
             <InputGroup hasValidation className="mb-3">
               <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-              <Form.Control placeholder={t("Username")} name="Username" value={values.Username} onBlur={handleBlur} onChange={handleChange} isInvalid={touched.Username && errors.Username} />
-              <Form.Control.Feedback type="invalid">{errors.Username}</Form.Control.Feedback>
+              <Form.Control placeholder={t("username")} name="username" value={values.username} onBlur={handleBlur} onChange={handleChange} isInvalid={touched.username && errors.username} />
+              <Form.Control.Feedback type="invalid">{errors.username}</Form.Control.Feedback>
             </InputGroup>
             <InputGroup hasValidation className="mb-3">
-              <Form.Control type="password" placeholder={t("Password")} name="Password" value={values.Password} onBlur={handleBlur} onChange={handleChange} isInvalid={touched.Password && errors.Password} />
-              <Form.Control.Feedback type="invalid">{errors.Password}</Form.Control.Feedback>
+              <Form.Control type="password" placeholder={t("password")} name="password" value={values.password} onBlur={handleBlur} onChange={handleChange} isInvalid={touched.password && errors.password} />
+              <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
             </InputGroup>
-            <Button type="submit">{t("Login")}</Button>
+            <Button type="submit">{t("login")}</Button>
           </Form>
         )}
       </Formik>
